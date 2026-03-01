@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MarketView — India's Market at a Glance</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet" />
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- ── NAV ── -->
+    <nav>
+      <div class="nav-inner">
+        <div class="logo">
+          <span class="logo-dot"></span>
+          MarketView
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a
+              href="#"
+              data-section="stocks"
+              class="active"
+              onclick="scrollToSection('stocks',this)">
+              <span class="nav-icon">📈</span> Stocks
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              data-section="crypto"
+              onclick="scrollToSection('crypto',this)">
+              <span class="nav-icon">₿</span> Crypto
+            </a>
+          </li>
+        </ul>
+        <div class="nav-right">
+          <div class="live-pill">
+            <div class="live-dot"></div>
+            LIVE
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ── TICKER TAPE ── -->
+    <div class="ticker-wrap">
+      <div class="ticker-track" id="ticker-track">
+        <div class="ticker-item"><span class="ticker-name">Loading…</span></div>
+      </div>
+    </div>
+
+    <!-- ── HERO ── -->
+    <div class="hero">
+      <div class="hero-inner">
+        <h1>India's Markets,<br /><span>Live & Clear.</span></h1>
+        <p>
+          Track top Indian stocks and crypto in real time. Clean data, live
+          prices, and instant insights — all in one place.
+        </p>
+        <div class="hero-badges">
+          <span class="badge">🇮🇳 NSE & BSE</span>
+          <span class="badge">₿ Crypto in ₹ INR</span>
+          <span class="badge">📊 Live Charts</span>
+          <span class="badge">🔄 Auto Refresh</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MAIN ── -->
+    <main>
+      <!-- STOCKS SECTION -->
+      <div id="stocks-section">
+        <div class="section-header">
+          <div class="section-title">
+            <div class="section-icon stocks-icon">📈</div>
+            <h2>Top Indian Stocks</h2>
+          </div>
+          <div class="tab-group">
+            <button class="tab-btn active">NSE</button>
+            <button class="tab-btn">BSE</button>
+          </div>
+        </div>
+
+        <div class="cards-grid" id="stock-cards">
+          <!-- Skeleton cards -->
+          <div class="card">
+            <div class="skeleton skel-row" style="width: 60%"></div>
+            <div
+              class="skeleton skel-row"
+              style="width: 40%; margin-top: 20px"></div>
+            <div
+              class="skeleton"
+              style="height: 56px; margin-top: 14px; border-radius: 8px"></div>
+          </div>
+          <div class="card">
+            <div class="skeleton skel-row" style="width: 60%"></div>
+            <div
+              class="skeleton skel-row"
+              style="width: 40%; margin-top: 20px"></div>
+            <div
+              class="skeleton"
+              style="height: 56px; margin-top: 14px; border-radius: 8px"></div>
+          </div>
+          <div class="card">
+            <div class="skeleton skel-row" style="width: 60%"></div>
+            <div
+              class="skeleton skel-row"
+              style="width: 40%; margin-top: 20px"></div>
+            <div
+              class="skeleton"
+              style="height: 56px; margin-top: 14px; border-radius: 8px"></div>
+          </div>
+          <div class="card">
+            <div class="skeleton skel-row" style="width: 60%"></div>
+            <div
+              class="skeleton skel-row"
+              style="width: 40%; margin-top: 20px"></div>
+            <div
+              class="skeleton"
+              style="height: 56px; margin-top: 14px; border-radius: 8px"></div>
+          </div>
+          <div class="card">
+            <div class="skeleton skel-row" style="width: 60%"></div>
+            <div
+              class="skeleton skel-row"
+              style="width: 40%; margin-top: 20px"></div>
+            <div
+              class="skeleton"
+              style="height: 56px; margin-top: 14px; border-radius: 8px"></div>
+          </div>
+        </div>
+
+        <!-- Detailed Table -->
+        <div class="overview-panel">
+          <table class="overview-table">
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>Price (₹)</th>
+                <th>Change</th>
+                <th>Change %</th>
+                <th>Market Cap</th>
+                <th>7D Chart</th>
+              </tr>
+            </thead>
+            <tbody id="stock-table-body">
+              <tr>
+                <td
+                  colspan="6"
+                  style="
+                    text-align: center;
+                    color: var(--muted);
+                    padding: 30px;
+                    font-size: 13px;
+                  ">
+                  Fetching stock data…
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- DIVIDER -->
+      <div class="section-divider"></div>
+
+      <!-- CRYPTO SECTION -->
+      <div id="crypto-section">
+        <div class="section-header">
+          <div class="section-title">
+            <div class="section-icon crypto-icon">₿</div>
+            <h2>Top Cryptocurrencies</h2>
+          </div>
+          <div style="font-size: 13px; color: var(--muted)">
+            Prices in INR · via CoinGecko
+          </div>
+        </div>
+
+        <div class="cards-grid" id="crypto-cards">
+          <div class="card">
+            <div class="skeleton skel-row" style="width: 60%"></div>
+            <div
+              class="skeleton skel-row"
+              style="width: 40%; margin-top: 20px"></div>
+            <div
+              class="skeleton"
+              style="height: 56px; margin-top: 14px; border-radius: 8px"></div>
+          </div>
+          <div class="card">
+            <div class="skeleton skel-row" style="width: 60%"></div>
+            <div
+              class="skeleton skel-row"
+              style="width: 40%; margin-top: 20px"></div>
+            <div
+              class="skeleton"
+              style="height: 56px; margin-top: 14px; border-radius: 8px"></div>
+          </div>
+          <div class="card">
+            <div class="skeleton skel-row" style="width: 60%"></div>
+            <div
+              class="skeleton skel-row"
+              style="width: 40%; margin-top: 20px"></div>
+            <div
+              class="skeleton"
+              style="height: 56px; margin-top: 14px; border-radius: 8px"></div>
+          </div>
+          <div class="card">
+            <div class="skeleton skel-row" style="width: 60%"></div>
+            <div
+              class="skeleton skel-row"
+              style="width: 40%; margin-top: 20px"></div>
+            <div
+              class="skeleton"
+              style="height: 56px; margin-top: 14px; border-radius: 8px"></div>
+          </div>
+          <div class="card">
+            <div class="skeleton skel-row" style="width: 60%"></div>
+            <div
+              class="skeleton skel-row"
+              style="width: 40%; margin-top: 20px"></div>
+            <div
+              class="skeleton"
+              style="height: 56px; margin-top: 14px; border-radius: 8px"></div>
+          </div>
+        </div>
+
+        <!-- Crypto Detail Table -->
+        <div class="overview-panel">
+          <table class="overview-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Coin</th>
+                <th>Price (INR)</th>
+                <th>24H %</th>
+                <th>Market Cap</th>
+                <th>Volume 24H</th>
+                <th>7D Chart</th>
+              </tr>
+            </thead>
+            <tbody id="crypto-table-body">
+              <tr>
+                <td
+                  colspan="7"
+                  style="
+                    text-align: center;
+                    color: var(--muted);
+                    padding: 30px;
+                    font-size: 13px;
+                  ">
+                  Fetching crypto data…
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-logo">MarketView</div>
+        <div>
+          Data sourced from CoinGecko (crypto) &amp; Yahoo Finance (stocks). For
+          informational purposes only — not financial advice.
+        </div>
+        <div style="margin-top: 8px; font-size: 12px">
+          © 2026 MarketView. Auto-refreshes every 60 seconds.
+        </div>
+      </div>
+    </footer>
+    <script src="./script.js"></script>
+  </body>
+</html>
